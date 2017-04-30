@@ -1,0 +1,5 @@
+* text=auto
+
+*.sql diff
+*.ts diff
+*.xml diff
