@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using CountYourLineEndingStyle.Domain.Results;
 
@@ -7,9 +7,9 @@ namespace CountYourLineEndingStyle.Domain
 {
     public class Manager
     {
-        public static Statistics Run()
+        public static Statistics Run(string basePath)
         {
-            IEnumerable<string> files = FilesRetriever.GetFiles("");
+            IEnumerable<string> files = FilesRetriever.GetFiles(basePath);
 
             IEnumerable<Result> enumerable = files.Select(Selector).ToList();
 
@@ -23,7 +23,11 @@ namespace CountYourLineEndingStyle.Domain
 
         static Result Selector(string path)
         {
-            return new SkipResult(path);
+            var content = File.ReadAllText(path);
+
+            var result = new IncludeResult(path, DecideEachFile.Perform(content));
+
+            return result;
         }
     }
 }
