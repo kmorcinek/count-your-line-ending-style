@@ -4,6 +4,7 @@
     {
         Crlf,
         Lf,
-        Mixed
+        Mixed,
+        NoApply
     }
 }

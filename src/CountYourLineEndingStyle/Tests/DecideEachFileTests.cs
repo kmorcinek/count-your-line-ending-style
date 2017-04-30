@@ -16,9 +16,9 @@ namespace CountYourLineEndingStyle.Tests
             fileResult.Should().Be(expected);
         }
 
-        //[Theory]
-//        [InlineData(LineEndings.Crlf + "line " + LineEndings.Crlf, FileResult.Crlf)]
-//        [InlineData(LineEndings.Lf + "line " + LineEndings.Lf, FileResult.Lf)]
+        [Theory]
+        [InlineData(LineEndings.Crlf + "line " + LineEndings.Crlf, FileResult.Crlf)]
+        [InlineData(LineEndings.Lf + "line " + LineEndings.Lf, FileResult.Lf)]
         public void TestMoreLines(string lineEnding, FileResult expected)
         {
             FileResult fileResult = DecideEachFile.Perform(lineEnding);
