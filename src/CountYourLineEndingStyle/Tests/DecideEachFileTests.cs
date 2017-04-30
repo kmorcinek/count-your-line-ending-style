@@ -8,7 +8,8 @@ namespace CountYourLineEndingStyle.Tests
     {
         [Theory]
         [InlineData("\r\n", FileResult.Crlf)]
-        public void Test(string lineEnding, FileResult expected)
+        [InlineData("\n", FileResult.Lf)]
+        public void TestJustOneLine(string lineEnding, FileResult expected)
         {
             FileResult fileResult = DecideEachFile.Perform(lineEnding);
 

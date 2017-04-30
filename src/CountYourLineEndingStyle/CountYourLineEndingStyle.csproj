@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Domain\DecideEachFile.cs" />
     <Compile Include="Domain\FileResult.cs" />
+    <Compile Include="Domain\LineEndings.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\DecideEachFileTests.cs" />
