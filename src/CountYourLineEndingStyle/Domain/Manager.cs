@@ -11,13 +11,14 @@ namespace CountYourLineEndingStyle.Domain
         {
             IEnumerable<string> files = FilesRetriever.GetFiles(basePath);
 
-            IEnumerable<Result> enumerable = files.Select(Selector).ToList();
+            Result[] enumerable = files.Select(Selector).ToArray();
 
             return new Statistics
             {
                 Crlf = enumerable.Count(x => x.Is(FileResult.Crlf)),
                 Lf = enumerable.Count(x => x.Is(FileResult.Lf)),
-                Mixed = enumerable.Count(x => x.Is(FileResult.Mixed))
+                Mixed = enumerable.Count(x => x.Is(FileResult.Mixed)),
+                Results = enumerable
             };
         }
 

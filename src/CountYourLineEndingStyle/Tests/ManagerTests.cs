@@ -30,6 +30,22 @@ namespace CountYourLineEndingStyle.Tests
             statistics.Mixed.Should().Be(1);
         }
 
+        [Fact]
+        public void Check_recursive_folder()
+        {
+            string innerFolder = Path.Combine(BasePath, "inner");
+            Directory.CreateDirectory(innerFolder);
+
+            RecreateFile("a.cs", LineEndings.Crlf);
+            RecreateFile(@"inner\b.cs", LineEndings.Crlf);
+
+            var statistics = Manager.Run(BasePath);
+
+            statistics.Crlf.Should().Be(2);
+            statistics.Lf.Should().Be(0);
+            statistics.Mixed.Should().Be(0);
+        }
+
         static void RecreateFile(string fileName, string content)
         {
             var path = Path.Combine(BasePath, fileName);
