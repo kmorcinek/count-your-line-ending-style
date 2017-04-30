@@ -7,15 +7,18 @@ namespace CountYourLineEndingStyle.Domain
 {
     public class Manager
     {
-        public static void Run()
+        public static Statistics Run()
         {
             IEnumerable<string> files = FilesRetriever.GetFiles("");
 
-            IEnumerable<Result> enumerable = files.Select(Selector);
+            IEnumerable<Result> enumerable = files.Select(Selector).ToList();
 
-            int crlfCount = enumerable.Count(x => x.Is(FileResult.Crlf));
-
-            Console.WriteLine($"crlf: {crlfCount}");
+            return new Statistics
+            {
+                Crlf = enumerable.Count(x => x.Is(FileResult.Crlf)),
+                Lf = enumerable.Count(x => x.Is(FileResult.Lf)),
+                Mixed = enumerable.Count(x => x.Is(FileResult.Mixed))
+            };
         }
 
         static Result Selector(string path)

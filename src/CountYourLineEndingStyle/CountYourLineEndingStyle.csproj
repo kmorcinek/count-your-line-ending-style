@@ -76,6 +76,7 @@
     <Compile Include="Domain\Results\IncludeResult.cs" />
     <Compile Include="Domain\Results\Result.cs" />
     <Compile Include="Domain\Results\SkipResult.cs" />
+    <Compile Include="Domain\Statistics.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tests\DecideEachFileTests.cs" />
