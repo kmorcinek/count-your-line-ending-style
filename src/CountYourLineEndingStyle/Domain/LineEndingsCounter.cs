@@ -10,5 +10,17 @@
 
             return crlfLinesCount;
         }
+
+        public static int CountOnlyLf(string content)
+        {
+            return CountLf(content) - CountCrlf(content);
+        }
+            
+        static int CountLf(string content)
+        {
+            int lfLinesCount = content.Length - content.Replace(LineEndings.Lf, string.Empty).Length;
+
+            return lfLinesCount;
+        }
     }
 }
