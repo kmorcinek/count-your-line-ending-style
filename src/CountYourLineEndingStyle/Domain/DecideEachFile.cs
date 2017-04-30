@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CountYourLineEndingStyle.Domain
+﻿namespace CountYourLineEndingStyle.Domain
 {
     public class DecideEachFile
     {

@@ -25,5 +25,15 @@ namespace CountYourLineEndingStyle.Tests
 
             fileResult.Should().Be(expected);
         }
+
+        [Fact]
+        public void Different_line_endings_should_return_mixed()
+        {
+            string content = LineEndings.Lf + "line " + LineEndings.Crlf;
+
+            FileResult fileResult = DecideEachFile.Perform(content);
+
+            fileResult.Should().Be(FileResult.Mixed);
+        }
     }
 }
