@@ -44,19 +44,20 @@ namespace CountYourLineEndingStyle
 
             var statistics = Manager.Run(path);
 
-            foreach (var result in statistics.Results.Where(x => x.Is(FileResult.Lf)))
-            {
-                Console.WriteLine($"LF path: {result.Path}");
-            }
-
-            foreach (var result in statistics.Results.Where(x => x.Is(FileResult.Mixed)))
-            {
-                Console.WriteLine($"Mixed path: {result.Path}");
-            }
+            PrintNotDefaultPath(statistics, FileResult.Lf);
+            PrintNotDefaultPath(statistics, FileResult.Mixed);
 
             Console.WriteLine($"Crlf: {statistics.Crlf}");
             Console.WriteLine($"Lf: {statistics.Lf}");
             Console.WriteLine($"Mixed: {statistics.Mixed}");
+        }
+
+        static void PrintNotDefaultPath(Statistics statistics, FileResult fileResult)
+        {
+            foreach (var result in statistics.Results.Where(x => x.Is(fileResult)))
+            {
+                Console.WriteLine($"{fileResult} path: {result.Path}");
+            }
         }
 
         static void ShowHelp(OptionSet p)
